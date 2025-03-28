@@ -6,8 +6,8 @@ on:
   pull_request:
 
 jobs:
-  dry-run:
-    name: Dry Run
+  check:
+    name: Check
     runs-on: ubuntu-latest
 
     steps:
