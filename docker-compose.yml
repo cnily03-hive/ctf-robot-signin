@@ -3,6 +3,7 @@ version: '3'
 services:
   web:
     build: .
+    image: ctf-robot-signin:latest
     restart: unless-stopped
     # volumes:
     #   - ./static:/var/www/html
