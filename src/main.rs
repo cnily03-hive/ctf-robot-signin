@@ -34,10 +34,11 @@ async fn main() {
         }));
 
     // flag_path = '/f1ag_' + random hex string
-    let randhex = std::iter::repeat_with(|| rand::random::<u8>())
+    let randhex = std::iter::repeat_with(rand::random::<u8>)
         .take(8)
-        .map(|b| format!("{:02x}", b))
-        .collect::<String>();
+        .fold(String::new(), |acc, byte| {
+            acc + &format!("{:02x}", byte)
+        });
     let flag_path = format!("/f1ag_{}", randhex);
 
     // Build application with routes and middleware
