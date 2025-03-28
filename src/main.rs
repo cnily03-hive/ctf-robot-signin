@@ -1,14 +1,16 @@
-use axum::{routing::get, Router};
+use axum::{Router, routing::get};
 use tower_http::services::ServeDir;
 
-async fn flag_handler() -> Result<axum::response::Response<axum::body::Body>, std::convert::Infallible> {
+async fn flag_handler()
+-> Result<axum::response::Response<axum::body::Body>, std::convert::Infallible> {
     let flag = std::env::var("FLAG").unwrap_or_else(|_| "flag{nop}".to_string());
-    Ok(
-        axum::response::Response::builder()
-            .header("Content-Type", "text/html")
-            .body(axum::body::Body::from(format!("<strong>Here is your flag: </strong>{}", flag)))
-            .unwrap()
-    )
+    Ok(axum::response::Response::builder()
+        .header("Content-Type", "text/html")
+        .body(axum::body::Body::from(format!(
+            "<strong>Here is your flag: </strong>{}",
+            flag
+        )))
+        .unwrap())
 }
 
 async fn handle_robots(flag_path: String) -> String {
@@ -27,7 +29,7 @@ async fn main() {
                 axum::response::Response::builder()
                     .status(axum::http::StatusCode::NOT_FOUND)
                     .body(axum::body::Body::from("404 Not Found"))
-                    .unwrap()
+                    .unwrap(),
             )
         }));
 
