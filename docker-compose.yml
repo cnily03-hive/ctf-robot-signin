@@ -10,7 +10,7 @@ services:
     environment:
       # - BIND_ADDR=0.0.0.0:80
       # - STATIC_PATH=/var/www/html
-      TZ=Asia/Shanghai
-      FLAG=flag{example_real_flag}
+      - TZ=Asia/Shanghai
+      - FLAG=flag{example_real_flag}
     ports:
       - "8000:80"
